@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+
+<style>
+    h3 {
+        margin-top:15px;
+        text-align: center
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid">
+        <span class="navbar-brand">
+            <a class="nav-link" th:href="@{/home}">Menu</a>
+        </span>
+        <div class="collapse navbar-collapse row" id="navbarNav">
+            <div class="col-auto me-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/register}">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<body>
+<h3>Таблица <span th:text="${table}"></span></h3>
+<table class="table">
+    <thead class="table-info">
+    <tr>
+        <th th:each="header : ${headers}"
+            th:text="${header}">header</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="elem : ${objects}">
+        <td th:text="${elem.getEnrolleeId()}">value</td>
+        <td th:text="${elem.getPhoto()}">value</td>
+        <td th:text="${elem.getMedicalCertificate()}">value</td>
+        <td th:text="${elem.getIADocuments()}">value</td>
+        <td th:text="${elem.getFillingWay()}">value</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

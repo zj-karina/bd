@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+
+<style>
+    h3 {
+        margin-top:15px;
+        text-align: center
+    }
+
+    label {
+        margin-left:80px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    div.container {
+        margin-top: 5px;
+        width: 700px;
+        height: 150px;
+    }
+
+    div.col-md-1, div.col-md-2 {
+        margin-top:40px;
+    }
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid">
+        <span class="navbar-brand">
+            <a class="nav-link" th:href="@{/home}">Menu</a>
+        </span>
+        <div class="collapse navbar-collapse row" id="navbarNav">
+            <div class="col-auto me-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/register}">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<body>
+
+    <h3>Главная страница</h3>
+
+    <form th:action="@{/table}" th:object = "${tbl}" th:method="post">
+        <div class="container border border-3 border-secondary rounded">
+            <div class="row">
+                <div class="col-md-1 align-self-center">
+                    <label> <p>Таблица</p> </label>
+                    <select th:field="*{name}" class="form-select-lg mb-1">
+                        <option th:each="tab : ${tables}"
+                                th:value="${tab}"
+                                th:text="${tab}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-1 offset-md-4 align-self-center">
+                    <label> <p>Действие</p> </label>
+                    <select th:field="*{action}" class="form-select-lg mb-1">
+                        <option th:each="act : ${actions}"
+                                th:value="${act}"
+                                th:text="${act}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-1 offset-md-3 align-self-center ">
+                    <button class="btn btn-primary"
+                            type="submit"
+                            th:text="Выбрать">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
